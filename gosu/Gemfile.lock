@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    gosu (0.7.40)
+    rmagick (2.13.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gosu
+  rmagick
