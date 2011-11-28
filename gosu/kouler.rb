@@ -10,6 +10,7 @@ class Player
     @image = Gosu::Image.new(window, "media/player.png", false)
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @dead = false
+    @radius = 24
     @bounds = {
       :top_left => {:x => 0, :y => 0},
       :bottom_right => {:x => window.width, :y => window.height}
@@ -48,10 +49,10 @@ class Player
   end
 
   def touching_bounds
-    return @x <= @bounds[:top_left][:x] || 
-           @x >= @bounds[:bottom_right][:x] ||
-           @y <= @bounds[:top_left][:y] ||
-           @y >= @bounds[:bottom_right][:y]
+    return @x - @radius <= @bounds[:top_left][:x] || 
+           @x + @radius >= @bounds[:bottom_right][:x] ||
+           @y - @radius <= @bounds[:top_left][:y] ||
+           @y + @radius >= @bounds[:bottom_right][:y]
   end
 
   def warp(x, y)
@@ -70,9 +71,8 @@ class GameWindow < Gosu::Window
     self.caption = "Kouler"
     
     @background_image = Gosu::Image.new(self, "media/space.png", true)
-    
-    @player = Player.new(self)
-    @player.warp(@width / 2, @height / 2)
+
+    start
   end
 
   def update
@@ -92,6 +92,19 @@ class GameWindow < Gosu::Window
     if id == Gosu::KbEscape then
       close
     end
+    if id == Gosu::KbS then
+      restart
+    end
+  end
+
+  def start
+    @player = Player.new(self)
+    @player.warp(@width / 2, @height / 2)
+  end
+
+  def restart
+    @player = nil if @player
+    start
   end
 end
 
