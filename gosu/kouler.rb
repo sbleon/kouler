@@ -54,6 +54,10 @@ class Player
   end
 
   def thrust(angle)
+    if @dead
+      return
+    end
+
     # Face the direction of thrust
     @angle = angle
     radians = angle * Math::PI / 180
