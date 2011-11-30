@@ -162,7 +162,7 @@ class GameWindow < Gosu::Window
     if id == Gosu::KbEscape then
       close
     end
-    if id == Gosu::KbS then
+    if id == Gosu::KbSpace then
       restart
     end
   end
