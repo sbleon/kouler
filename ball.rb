@@ -34,7 +34,7 @@ class Ball
 
   # Calculate the new velocity components for this and the ball it has collided with
   def collide(other_ball)
-    puts 'COLLISION!'
+    #puts 'COLLISION!'
 
     # Calculate in a rotated frame of reference where the line between the
     # balls' centers is the x axis.
@@ -65,7 +65,7 @@ class Ball
 
     # New X-velocities (Y-velocities do not change)
     f1_x = ((v1_x * (m1 - m2)) + (2 * m2 * v2_x)) / (m1 + m2)
-    f2_x = ((v2_x * (m1 - m2)) + (2 * m1 * v1_x)) / (m1 + m2) # should the 2 * m2 here be 2 * m1?
+    f2_x = ((v2_x * (m1 - m2)) + (2 * m1 * v1_x)) / (m1 + m2)
     # puts "f1_x = #{f1_x}"
     # puts "f2_x = #{f2_x}"
 
@@ -75,17 +75,28 @@ class Ball
     v2 = Math.sqrt(f2_x**2 + v2_y**2)
     # puts "v1 = #{v1}"
     # puts "v2 = #{v2}"
+
     # New direction
-    e1 = Math.atan2(f1_x, v1_y) + a
-    e2 = Math.atan2(f2_x, v2_y) + a
+    begin
+      e1 = Math.atan2(f1_x, v1_y) + a
+    rescue
+      e1 = a
+    end
+    begin
+      e2 = Math.atan2(f2_x, v2_y) + a
+    rescue
+      e2 = -1 * a
+    end
     # puts "e1 = #{e1}"
     # puts "e2 = #{e2}"
+
     # New velocity components
     v1_x = v1 * Math.cos(e1) * -1
     v1_y = v1 * Math.sin(e1) * -1
     v2_x = v2 * Math.cos(e2) * -1
     v2_y = v2 * Math.sin(e2) * -1
 
+    # Update objects' velocity components
     self.vel_x = v1_x
     self.vel_y = v1_y
     other_ball.vel_x = v2_x
