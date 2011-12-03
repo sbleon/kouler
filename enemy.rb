@@ -6,6 +6,6 @@ class Enemy < Ball
     @mass = 10
     @accel = 0.3 # per tick
     @drag = 0.1 # per tick
-    @velocity_max = 4
+    @velocity_max = 10
   end
 end

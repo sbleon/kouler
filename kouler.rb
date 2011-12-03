@@ -31,10 +31,6 @@ class GameWindow < Gosu::Window
       @player.thrust(player_button_dir)
     end
 
-    # Update position, velocity, dead-ness state, etc
-    @player.update
-    @enemies.map(&:update)
-
     # Check for collisions
     @enemies.each do |enemy|
       # Check each other enemy
@@ -44,6 +40,10 @@ class GameWindow < Gosu::Window
       # Check the player
       enemy.check_collision(@player)
     end
+
+    # Update position, velocity, dead-ness state, etc
+    @player.update
+    @enemies.map(&:update)
   end
 
   def draw
