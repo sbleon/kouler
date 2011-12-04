@@ -32,10 +32,18 @@ class GameWindow < Gosu::Window
     end
 
     # Check for collisions
+    collisions_checked = []
     @enemies.each do |enemy|
+      # We don't want to ever check for a collision between something and itself, so pretend
+      # we already did it.
+      collisions_checked << [enemy, enemy]
       # Check each other enemy
       @enemies.each do |other_enemy|
-        enemy.check_collision(other_enemy) unless other_enemy == enemy
+        # unless we've already checked these two
+        unless collisions_checked.include?([other_enemy, enemy])
+          enemy.check_collision(other_enemy)
+          collisions_checked << [enemy, other_enemy]
+        end
       end
       # Check the player
       enemy.check_collision(@player)
