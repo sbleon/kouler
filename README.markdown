@@ -10,8 +10,10 @@ So far I've got:
 
 - a damped player sprite
 - collision detection
+- proper elastic collisions
+- a stupid chasing algorithm
 
 The next steps will be:
 
-- enemies that actually move
-- proper elastic collisions
+- smarter enemies
+- preventing balls from overlapping each other
