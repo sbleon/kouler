@@ -118,6 +118,10 @@ class Ball
     end
   end
 
+  def dead?
+    @dead
+  end
+
   def draw
     unless @dead
       @image.draw_rot(@x, @y, ZOrder::Player, @angle)

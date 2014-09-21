@@ -31,6 +31,12 @@ class GameWindow < Gosu::Window
       @player.thrust(player_button_dir)
     end
 
+    # Check for dead balls
+    @enemies.length.times do |n|
+      @enemies[n] = nil if @enemies[n].dead?
+    end
+    @enemies = @enemies.compact
+
     # Check for collisions
     collisions_checked = []
     @enemies.each do |enemy|
