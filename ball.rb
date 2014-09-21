@@ -7,7 +7,6 @@ class Ball
   attr_accessor :vel_x, :vel_y
 
   def initialize(window)
-    super
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @dead = false
     @radius = 1
