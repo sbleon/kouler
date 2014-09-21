@@ -6,10 +6,10 @@ class Enemy < Ball
     super
     @image = Gosu::Image.new(window, "media/enemy.png", false)
     @radius = 10
-    @mass = 20
-    @accel = 0.3 # per tick
+    @mass = 25
+    @accel = 0.4 # per tick
     @drag = 0.1 # per tick
-    @velocity_max = 10
+    @velocity_max = 6
   end
 
   def chase(ball)
@@ -26,7 +26,7 @@ class Enemy < Ball
   def draw
     super
     # unless @dead
-    #   @window.draw_line(@x, @y, Gosu::yellow, @x + (@target_dx), @y - (@target_dy), Gosu::yellow, 100)
+    #   @window.draw_line(@x, @y, Gosu::Color::YELLOW, @x + (@target_dx), @y - (@target_dy), Gosu::Color::YELLOW, 100)
     # end
   end
 end

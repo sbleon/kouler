@@ -14,11 +14,22 @@ class Ball
     @accel = 0.3 # per tick
     @drag = 0.1 # per tick
     @velocity_max = 10
+    @bounce_factor = 0.50
     @bounds = {
       :top_left => {:x => 0, :y => 0},
       :bottom_right => {:x => window.width, :y => window.height}
     }
     @window = window
+  end
+
+  def bounce(velocity)
+    if velocity < 0
+      velocity - @bounce_factor
+    elsif velocity > 0
+      velocity + @bounce_factor
+    else
+      velocity
+    end
   end
 
   def check_collision(other_ball)
@@ -66,6 +77,9 @@ class Ball
     f2_x = ((v2_x * (m1 - m2)) + (2 * m1 * v1_x)) / (m1 + m2)
     # puts "f1_x = #{f1_x}"
     # puts "f2_x = #{f2_x}"
+
+    f1_x = bounce(f1_x)
+    f2_x = bounce(f2_x)
 
     # convert back to original frame of reference
     # New total velocity
