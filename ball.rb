@@ -7,7 +7,6 @@ class Ball
   attr_accessor :vel_x, :vel_y
 
   def initialize(window)
-    super
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @dead = false
     @radius = 1
@@ -25,7 +24,7 @@ class Ball
   def check_collision(other_ball)
     # Pythagorean theorem!
     distance = Math.sqrt((@x - other_ball.x)**2 + (@y - other_ball.y)**2)
-    
+
     # If balls are closer than the sum of their radii, they must be touching
     if distance <= @radius + other_ball.radius
       collide(other_ball)
@@ -117,6 +116,10 @@ class Ball
     else
       Math.atan2(vx, -1 * vy)
     end
+  end
+
+  def dead?
+    @dead
   end
 
   def draw
@@ -215,7 +218,7 @@ class Ball
   end
 
   def touching_bounds
-    return @x - @radius <= @bounds[:top_left][:x] || 
+    return @x - @radius <= @bounds[:top_left][:x] ||
            @x + @radius >= @bounds[:bottom_right][:x] ||
            @y - @radius <= @bounds[:top_left][:y] ||
            @y + @radius >= @bounds[:bottom_right][:y]

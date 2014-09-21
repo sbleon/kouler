@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
     @width = 800
     super(@width, @height, false)
     self.caption = "Kouler"
-    
+
     @background_image = Gosu::Image.new(self, "media/space.png", true)
 
     @buttons = []
@@ -30,6 +30,12 @@ class GameWindow < Gosu::Window
     if (player_button_dir = button_dir(0))
       @player.thrust(player_button_dir)
     end
+
+    # Check for dead balls
+    @enemies.length.times do |n|
+      @enemies[n] = nil if @enemies[n].dead?
+    end
+    @enemies = @enemies.compact
 
     # Check for collisions
     collisions_checked = []
