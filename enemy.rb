@@ -26,7 +26,7 @@ class Enemy < Ball
   def draw
     super
     # unless @dead
-    #   @window.draw_line(@x, @y, Gosu::yellow, @x + (@target_dx), @y - (@target_dy), Gosu::yellow, 100)
+    #   @window.draw_line(@x, @y, Gosu::Color::YELLOW, @x + (@target_dx), @y - (@target_dy), Gosu::Color::YELLOW, 100)
     # end
   end
 end
