@@ -126,6 +126,10 @@ class Ball
     end
   end
 
+  def heading
+    Math.atan2(@vel_x, -1 * @vel_y)
+  end
+
   def thrust(angle)
     if @dead
       return

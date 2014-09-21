@@ -34,6 +34,8 @@ class GameWindow < Gosu::Window
     # Check for collisions
     collisions_checked = []
     @enemies.each do |enemy|
+      enemy.chase(@player)
+
       # We don't want to ever check for a collision between something and itself, so pretend
       # we already did it.
       collisions_checked << [enemy, enemy]
