@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
     @width = 800
     super(@width, @height, false)
     self.caption = "Kouler"
-    
+
     @background_image = Gosu::Image.new(self, "media/space.png", true)
 
     @buttons = []
